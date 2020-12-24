@@ -17,3 +17,15 @@ forked
 https://github.com/m-masataka/mongo-tools/tree/incremental_backup
 
 https://navyuginfo.com/incremental-backup-for-mongodb/
+
+
+conn_args="--host 10.22.7.222 --port 27017 -u admin -p vnpadmin7222test --authenticationDatabase admin"
+
+mongodump ${conn_args} -d local -c oplog.rs --query '{"ts":{"$timestamp":{"t":1604476288,"i":3456}}}' --out /backup/mongomove/
+
+
+
+
+mongodump ${conn_args} -d local -c oplog.rs --query '{"ts":{"$gte":{"$timestamp":{"t":1604476288,"i":3456}}}}' --out /backup/mongomove/
+
+vnpsys730test
