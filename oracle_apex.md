@@ -89,3 +89,10 @@ https://apex.oracle.com/en/platform/deployment/
 
 
 -------------------------------------------------------------------------------------------
+startup database
+
+truy cap vao sqlplus / as sysdba
+
+@apexins.sql sysaux sysaux temp /i/
+
+
