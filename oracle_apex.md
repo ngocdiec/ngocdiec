@@ -89,11 +89,80 @@ https://apex.oracle.com/en/platform/deployment/
 
 
 -------------------------------------------------------------------------------------------
-startup database
+# Enviroment:
+OS   : Oracle Linux 6 Update 8
+JRE  : 8
+DB   : 11gr2
+APEX : 20.2
+ORDS : 20.3
 
-truy cap vao sqlplus / as sysdba
+Cài đặt JRE 8 nếu OS hiện tại đang cài bản thấp hơn
+1. Cài online (nếu có kết nối internet
+```console
+[root@dbvnpay ~]# yum search openjdk
+[root@dbvnpay ~]# yum install java-1.8.0-openjdk.x86_64
 
-@apexins.sql sysaux sysaux temp /i/
+```
+2. Cài offline nếu không có kết nối internet
+Tải các gói sau và copy vào máy chủ
+
+[java-1.8.0-openjdk.x86_64](https://yum.oracle.com/repo/OracleLinux/OL6/8/base/x86_64/getPackage/java-1.8.0-openjdk-1.8.0.91-1.b14.el6.x86_64.rpm)
+
+[java-1.8.0-openjdk-headless.x86_64](https://yum.oracle.com/repo/OracleLinux/OL6/8/base/x86_64/getPackage/java-1.8.0-openjdk-headless-1.8.0.91-1.b14.el6.x86_64.rpm)
+
+```console
+yum localinstall java-1.8.0-openjdk-headless-1.8.0.91-1.b14.el6.x86_64.rpm java-1.8.0-openjdk-1.8.0.91-1.b14.el6.x86_64.rpm
+```
+
+copy 2 file vào cùng phân vùng cài oracle cà giải nén
+- apex_20.2.zip (/u01/apex)
+- ords-20.3.0.301.1819.zip (/u01/ords)
+
+```console
+[oracle@dbvnpay ~]$ cd /u01
+[oracle@dbvnpay u01]$ mkdir ords
+[oracle@dbvnpay u01]$ cp -r apex/images/ ords/
+[oracle@dbvnpay u01]$ mkdir -p ords/config
+
+/u01
+├── apex
+├── app
+├── ords
+│   ├── config
+│   ├── docs
+│   ├── examples
+│   ├── images
+│   ├── index.html
+│   ├── ords.war
+│   ├── params
+```
+
+
+# startup database
+```console
+[oracle@dbvnpay ~]$ lsnrctl start
+
+[oracle@dbvnpay ~]$ sqlplus / as sysdba
+
+SQL> startup;
+
+SQL> select open_mode from v$database;
+
+OPEN_MODE
+--------------------
+READ WRITE
+```
+
+# Cài đặt APEX
+
+```console
+[oracle@dbvnpay ~]$ cd /u01/apex/
+[oracle@dbvnpay ~]$ sqlplus / as sysdba
+SQL> @apexins.sql sysaux sysaux temp /i/
+```
+@apexins.sql
+Cài đặt APEX
+
 
 @apxchpwd.sql
 This script can be used to change the password of an Application Express
@@ -111,15 +180,8 @@ cd ords/
 mkdir config
 
 ORDS yêu cầu Java 8
-```console
-java-1.8.0-openjdk.x86_64
-https://yum.oracle.com/repo/OracleLinux/OL6/8/base/x86_64/getPackage/java-1.8.0-openjdk-1.8.0.91-1.b14.el6.x86_64.rpm
 
-java-1.8.0-openjdk-headless.x86_64
-https://yum.oracle.com/repo/OracleLinux/OL6/8/base/x86_64/getPackage/java-1.8.0-openjdk-headless-1.8.0.91-1.b14.el6.x86_64.rpm
-
-yum localinstall java-1.8.0-openjdk-headless-1.8.0.91-1.b14.el6.x86_64.rpm java-1.8.0-openjdk-1.8.0.91-1.b14.el6.x86_64.rpm
-```
+# Cài đặt ORDS
 
 java -jar ords.war install
 
