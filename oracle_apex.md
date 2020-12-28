@@ -111,7 +111,7 @@ cd ords/
 mkdir config
 
 ORDS yêu cầu Java 8
-```
+```console
 java-1.8.0-openjdk.x86_64
 https://yum.oracle.com/repo/OracleLinux/OL6/8/base/x86_64/getPackage/java-1.8.0-openjdk-1.8.0.91-1.b14.el6.x86_64.rpm
 
@@ -119,7 +119,7 @@ java-1.8.0-openjdk-headless.x86_64
 https://yum.oracle.com/repo/OracleLinux/OL6/8/base/x86_64/getPackage/java-1.8.0-openjdk-headless-1.8.0.91-1.b14.el6.x86_64.rpm
 
 yum localinstall java-1.8.0-openjdk-headless-1.8.0.91-1.b14.el6.x86_64.rpm java-1.8.0-openjdk-1.8.0.91-1.b14.el6.x86_64.rpm
-```console
+```
 
 java -jar ords.war install
 
