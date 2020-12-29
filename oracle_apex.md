@@ -165,9 +165,25 @@ Cài đặt APEX
 
 
 @apxchpwd.sql
+Thay đổi thông tin của user quản trị
+```console
+[oracle@dbvnpay apex]$ pwd
+/u01/apex
+[oracle@dbvnpay apex]$ sqlplus / as sysdba
+SQL> @apxchpwd.sql
+================================================================================
 This script can be used to change the password of an Application Express
 instance administrator. If the user does not yet exist, a user record will be
 created.
+================================================================================
+Enter the administrator's username [ADMIN] 
+User "ADMIN" exists.
+Enter ADMIN's email [ADMIN] ngoctv@vnpay.vn
+Enter ADMIN's password [] 
+Changed password of instance administrator ADMIN.
+
+```
+
 
 @apex_rest_config.sql
 aaa
