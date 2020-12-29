@@ -361,9 +361,6 @@ Requires to login with administrator privileges to verify Oracle REST Data Servi
 Enter the administrator username:sys
 Enter the database password for SYS AS SYSDBA:
 Confirm password:
-Passwords do not match, try again
-Enter the database password for SYS AS SYSDBA:
-Confirm password:
 Connecting to database user: SYS AS SYSDBA url: jdbc:oracle:thin:@localhost:1521:VNPAY
 
 Retrieving information.
