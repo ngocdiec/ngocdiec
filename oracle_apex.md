@@ -199,7 +199,7 @@ Enter a password for the APEX_REST_PUBLIC_USER user              []
 
 Kiểm tra thông tin của các user
 ```sql
---select username,account_status  from dba_users where username like 'APEX%'
+--select username,account_status  from dba_users where username like 'APEX%';
 
 ALTER USER APEX_LISTENER  ACCOUNT UNLOCK identified by admin_123;
 
@@ -212,7 +212,7 @@ ALTER USER APEX_INSTANCE_ADMIN_USER ACCOUNT UNLOCK identified by admin_123;
 ALTER USER APEX_200200 ACCOUNT UNLOCK identified by admin_123;
 
 
---select username,account_status  from dba_users where username like 'ORDS%'
+--select username,account_status  from dba_users where username like 'ORDS%';
 
 ALTER USER ORDS_METADATA ACCOUNT UNLOCK identified by admin_123;
 
@@ -343,7 +343,63 @@ ORDS yêu cầu Java 8
 
 # Cài đặt ORDS
 
-java -jar ords.war install
+```console
+[oracle@dbvnpay ords]$ java -jar ords.war install
+This Oracle REST Data Services instance has not yet been configured.
+Please complete the following prompts
+
+
+Enter the location to store configuration data: /u01/ords/config
+Enter the name of the database server [localhost]:
+Enter the database listen port [1521]:
+Enter 1 to specify the database service name, or 2 to specify the database SID [1]:2
+Enter the database SID [xe]:VNPAY
+Enter the database password for ORDS_PUBLIC_USER:
+Confirm password:
+Requires to login with administrator privileges to verify Oracle REST Data Services schema.
+
+Enter the administrator username:sys
+Enter the database password for SYS AS SYSDBA:
+Confirm password:
+Passwords do not match, try again
+Enter the database password for SYS AS SYSDBA:
+Confirm password:
+Connecting to database user: SYS AS SYSDBA url: jdbc:oracle:thin:@localhost:1521:VNPAY
+
+Retrieving information.
+Enter 1 if you want to use PL/SQL Gateway or 2 to skip this step.
+If using Oracle Application Express or migrating from mod_plsql then you must enter 1 [1]:
+Enter the database password for APEX_PUBLIC_USER:
+Confirm password:
+Enter 1 to specify passwords for Application Express RESTful Services database users (APEX_LISTENER, APEX_REST_PUBLIC_USER) or 2 to skip this step [1]:
+Enter the database password for APEX_LISTENER:
+Confirm password:
+Enter the database password for APEX_REST_PUBLIC_USER:
+Confirm password:
+Enter a number to select a feature to enable:
+   [1] SQL Developer Web  (Enables all features)
+   [2] REST Enabled SQL
+   [3] Database API
+   [4] REST Enabled SQL and Database API
+   [5] None
+Choose [1]:1
+2020-12-29T02:01:28.382Z INFO        reloaded pools: []
+Installing Oracle REST Data Services version 20.3.0.r3011819
+... Log file written to /home/oracle/ords_install_core_2020-12-29_090128_00471.log
+... Verified database prerequisites
+... Created Oracle REST Data Services proxy user
+... Created Oracle REST Data Services schema
+... Granted privileges to Oracle REST Data Services
+... Created Oracle REST Data Services database objects
+... Log file written to /home/oracle/ords_install_datamodel_2020-12-29_090139_00061.log
+... Log file written to /home/oracle/ords_install_apex_2020-12-29_090139_00748.log
+Completed installation for Oracle REST Data Services version 20.3.0.r3011819. Elapsed time: 00:00:12.44 
+
+Enter 1 if you wish to start in standalone mode or 2 to exit [1]:1
+Enter the APEX static resources location:/u01/ords/images
+Enter 1 if using HTTP or 2 if using HTTPS [1]:1
+
+```
 
 
 
