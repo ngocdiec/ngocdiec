@@ -105,10 +105,8 @@ Cài đặt JRE 8 nếu OS hiện tại đang cài bản thấp hơn
 ```
 2. Cài offline nếu không có kết nối internet
 Tải các gói sau và copy vào máy chủ
-
-[java-1.8.0-openjdk.x86_64](https://yum.oracle.com/repo/OracleLinux/OL6/8/base/x86_64/getPackage/java-1.8.0-openjdk-1.8.0.91-1.b14.el6.x86_64.rpm)
-
-[java-1.8.0-openjdk-headless.x86_64](https://yum.oracle.com/repo/OracleLinux/OL6/8/base/x86_64/getPackage/java-1.8.0-openjdk-headless-1.8.0.91-1.b14.el6.x86_64.rpm)
+- [java-1.8.0-openjdk.x86_64](https://yum.oracle.com/repo/OracleLinux/OL6/8/base/x86_64/getPackage/java-1.8.0-openjdk-1.8.0.91-1.b14.el6.x86_64.rpm)
+- [java-1.8.0-openjdk-headless.x86_64](https://yum.oracle.com/repo/OracleLinux/OL6/8/base/x86_64/getPackage/java-1.8.0-openjdk-headless-1.8.0.91-1.b14.el6.x86_64.rpm)
 
 ```console
 yum localinstall java-1.8.0-openjdk-headless-1.8.0.91-1.b14.el6.x86_64.rpm java-1.8.0-openjdk-1.8.0.91-1.b14.el6.x86_64.rpm
@@ -138,16 +136,12 @@ copy 2 file vào cùng phân vùng cài oracle cà giải nén
 ```
 
 
-# startup database
+# Startup database
 ```console
 [oracle@dbvnpay ~]$ lsnrctl start
-
 [oracle@dbvnpay ~]$ sqlplus / as sysdba
-
 SQL> startup;
-
 SQL> select open_mode from v$database;
-
 OPEN_MODE
 --------------------
 READ WRITE
@@ -194,33 +188,29 @@ Enter a password for the APEX_REST_PUBLIC_USER user              []
 ...setting session environment
 ...create APEX_LISTENER and APEX_REST_PUBLIC_USER users
 
-
 ```
 
-Kiểm tra thông tin của các user
-```sql
---select username,account_status  from dba_users where username like 'APEX%';
+# Unlock một số user cần thiết
+# Unlock một số user cần thiết
+```SQL
+/* Cần unlock một số user liên quan
+   - APEX: APEX_PUBLIC_USER, APEX_LISTENER, APEX_REST_PUBLIC_USER
+   - ORDS: ORDS_PUBLIC_USER
+*/
+SELECT USERNAME,ACCOUNT_STATUS  FROM DBA_USERS WHERE USERNAME LIKE 'APEX%';
 
-ALTER USER APEX_LISTENER  ACCOUNT UNLOCK identified by admin_123;
+ALTER USER APEX_LISTENER  ACCOUNT UNLOCK identified by "Passw0rd!2";
+ALTER USER APEX_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
+ALTER USER APEX_REST_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
+--ALTER USER APEX_INSTANCE_ADMIN_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
+--ALTER USER APEX_200200 ACCOUNT UNLOCK identified by "Passw0rd!2";
 
-ALTER USER APEX_PUBLIC_USER ACCOUNT UNLOCK identified by admin_123;
+SELECT USERNAME,ACCOUNT_STATUS  FROM DBA_USERS WHERE USERNAME LIKE 'ORDS%';
 
-ALTER USER APEX_REST_PUBLIC_USER ACCOUNT UNLOCK identified by admin_123;
-
-ALTER USER APEX_INSTANCE_ADMIN_USER ACCOUNT UNLOCK identified by admin_123;
-
-ALTER USER APEX_200200 ACCOUNT UNLOCK identified by admin_123;
-
-
---select username,account_status  from dba_users where username like 'ORDS%';
-
-ALTER USER ORDS_METADATA ACCOUNT UNLOCK identified by admin_123;
-
-ALTER USER ORDS_PUBLIC_USER ACCOUNT UNLOCK identified by admin_123;
-
-ALTER USER ORDSYS ACCOUNT UNLOCK identified by admin_123;
+--ALTER USER ORDS_METADATA ACCOUNT UNLOCK identified by "Passw0rd!2";
+ALTER USER ORDS_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
+--ALTER USER ORDSYS ACCOUNT UNLOCK identified by "Passw0rd!2";
 ```
-
 
 # Mở kết nối
 11g
@@ -328,41 +318,9 @@ principal_type => xs_acl.ptype_db));
 END;
 /
 
-
 EXEC DBMS_XDB.sethttpport(0);
 
 ```
-
-
-# Unlock một số user cần thiết
-```SQL
-/* Cần unlock một số user liên quan
-   - APEX: APEX_PUBLIC_USER, APEX_LISTENER, APEX_REST_PUBLIC_USER
-   - ORDS: ORDS_PUBLIC_USER
-*/
-select username,account_status  from dba_users where username like 'APEX%';
-
-ALTER USER APEX_LISTENER  ACCOUNT UNLOCK identified by "Passw0rd!2";
-ALTER USER APEX_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
-ALTER USER APEX_REST_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
---ALTER USER APEX_INSTANCE_ADMIN_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
---ALTER USER APEX_200200 ACCOUNT UNLOCK identified by "Passw0rd!2";
-
-select username,account_status  from dba_users where username like 'ORDS%';
-
---ALTER USER ORDS_METADATA ACCOUNT UNLOCK identified by "Passw0rd!2";
-ALTER USER ORDS_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
---ALTER USER ORDSYS ACCOUNT UNLOCK identified by "Passw0rd!2";
-```
-
-
-cp -r apex/images/ ords/
-
-cd ords/
-
-mkdir config
-
-ORDS yêu cầu Java 8
 
 # Cài đặt ORDS
 
@@ -449,8 +407,3 @@ kill `ps -ef | grep ords.war | awk '{print $2}'`
 [oracle@dbvnpay ~]$ chmod u+x ~/scripts/*.sh
 
 ```
-
-
-
-
-
