@@ -186,8 +186,152 @@ Changed password of instance administrator ADMIN.
 
 
 @apex_rest_config.sql
-aaa
+```console
+SQL> @apex_rest_config.sql
+Enter a password for the APEX_LISTENER user              [] 
+Enter a password for the APEX_REST_PUBLIC_USER user              [] 
+...set_appun.sql
+...setting session environment
+...create APEX_LISTENER and APEX_REST_PUBLIC_USER users
 
+
+```
+
+Kiểm tra thông tin của các user
+```sql
+--select username,account_status  from dba_users where username like 'APEX%'
+
+ALTER USER APEX_LISTENER  ACCOUNT UNLOCK identified by admin_123;
+
+ALTER USER APEX_PUBLIC_USER ACCOUNT UNLOCK identified by admin_123;
+
+ALTER USER APEX_REST_PUBLIC_USER ACCOUNT UNLOCK identified by admin_123;
+
+ALTER USER APEX_INSTANCE_ADMIN_USER ACCOUNT UNLOCK identified by admin_123;
+
+ALTER USER APEX_200200 ACCOUNT UNLOCK identified by admin_123;
+
+
+--select username,account_status  from dba_users where username like 'ORDS%'
+
+ALTER USER ORDS_METADATA ACCOUNT UNLOCK identified by admin_123;
+
+ALTER USER ORDS_PUBLIC_USER ACCOUNT UNLOCK identified by admin_123;
+
+ALTER USER ORDSYS ACCOUNT UNLOCK identified by admin_123;
+```
+
+
+# xxx
+11g
+```SQL
+DECLARE
+   ACL_PATH   VARCHAR2 (4000);
+BEGIN
+   -- Look for the ACL currently assigned to '*' and give APEX_200200----------( Or APEX_200200)
+   -- the "connect" privilege if APEX_200200 does not have the privilege yet.
+
+   SELECT ACL
+     INTO ACL_PATH
+     FROM DBA_NETWORK_ACLS
+    WHERE HOST = '*' AND LOWER_PORT IS NULL AND UPPER_PORT IS NULL;
+
+
+   IF DBMS_NETWORK_ACL_ADMIN.CHECK_PRIVILEGE (ACL_PATH,
+                                              'APEX_200200',
+                                              'connect')
+         IS NULL
+   THEN
+      DBMS_NETWORK_ACL_ADMIN.ADD_PRIVILEGE (ACL_PATH,
+                                            'APEX_200200',
+                                            TRUE,
+                                            'connect');
+   END IF;
+EXCEPTION
+   -- When no ACL has been assigned to '*'.
+
+   WHEN NO_DATA_FOUND
+   THEN
+      DBMS_NETWORK_ACL_ADMIN.CREATE_ACL (
+         'power_users.xml',
+         'ACL that lets power users to connect to everywhere',
+         'APEX_200200',
+         TRUE,
+         'connect');
+
+      DBMS_NETWORK_ACL_ADMIN.ASSIGN_ACL ('power_users.xml', '*');
+END;
+/
+
+COMMIT;
+
+DECLARE
+   ACL_PATH   VARCHAR2 (4000);
+BEGIN
+   -- Look for the ACL currently assigned to 'localhost' and give APEX_200200
+   -- the "connect" privilege if APEX_200200 does not have the privilege yet.
+
+   SELECT ACL
+     INTO ACL_PATH
+     FROM DBA_NETWORK_ACLS
+    WHERE HOST = 'localhost' AND LOWER_PORT IS NULL AND UPPER_PORT IS NULL;
+
+   IF DBMS_NETWORK_ACL_ADMIN.CHECK_PRIVILEGE (ACL_PATH,
+                                              'APEX_200200',
+                                              'connect')
+         IS NULL
+   THEN
+      DBMS_NETWORK_ACL_ADMIN.ADD_PRIVILEGE (ACL_PATH,
+                                            'APEX_200200',
+                                            TRUE,
+                                            'connect');
+   END IF;
+EXCEPTION
+   -- When no ACL has been assigned to 'localhost'.
+
+   WHEN NO_DATA_FOUND
+   THEN
+      DBMS_NETWORK_ACL_ADMIN.CREATE_ACL (
+         'local-access-users.xml',
+         'ACL that lets users to connect to localhost',
+         'APEX_200200',
+         TRUE,
+         'connect');
+
+      DBMS_NETWORK_ACL_ADMIN.ASSIGN_ACL ('local-access-users.xml',
+                                         'localhost');
+END;
+/
+
+COMMIT;
+```
+
+```SQL
+--For Oracle Database version 12c or later run the below script:
+
+
+BEGIN
+DBMS_NETWORK_ACL_ADMIN.APPEND_HOST_ACE(
+host => '*',
+ace => xs$ace_type(privilege_list => xs$name_list('connect'),
+principal_name => 'APEX_200200',
+principal_type => xs_acl.ptype_db));
+END;
+/
+
+BEGIN
+DBMS_NETWORK_ACL_ADMIN.APPEND_HOST_ACE(
+host => 'localhost',
+ace => xs$ace_type(privilege_list => xs$name_list('connect'),
+principal_name => 'APEX_200200',
+principal_type => xs_acl.ptype_db));
+END;
+/
+
+
+EXEC DBMS_XDB.sethttpport(0);
+
+```
 
 cp -r apex/images/ ords/
 
