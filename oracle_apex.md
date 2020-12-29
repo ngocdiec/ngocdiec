@@ -191,7 +191,6 @@ Enter a password for the APEX_REST_PUBLIC_USER user              []
 ```
 
 # Unlock một số user cần thiết
-# Unlock một số user cần thiết
 ```SQL
 /* Cần unlock một số user liên quan
    - APEX: APEX_PUBLIC_USER, APEX_LISTENER, APEX_REST_PUBLIC_USER
