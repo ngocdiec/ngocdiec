@@ -90,11 +90,11 @@ https://apex.oracle.com/en/platform/deployment/
 
 -------------------------------------------------------------------------------------------
 # Enviroment:
-OS   : Oracle Linux 6 Update 8
-JRE  : 8
-DB   : 11gr2
-APEX : 20.2
-ORDS : 20.3
+- OS   : Oracle Linux 6 Update 8
+- JRE  : 8
+- DB   : 11gr2
+- APEX : 20.2
+- ORDS : 20.3
 
 Cài đặt JRE 8 nếu OS hiện tại đang cài bản thấp hơn
 1. Cài online (nếu có kết nối internet
@@ -336,8 +336,10 @@ EXEC DBMS_XDB.sethttpport(0);
 
 # Unlock một số user cần thiết
 ```SQL
---Cần unlock một số user liên quan đến - APEX: APEX_PUBLIC_USER, APEX_LISTENER, APEX_REST_PUBLIC_USER - ORDS: ORDS_PUBLIC_USER
-
+/* Cần unlock một số user liên quan
+   - APEX: APEX_PUBLIC_USER, APEX_LISTENER, APEX_REST_PUBLIC_USER
+   - ORDS: ORDS_PUBLIC_USER
+*/
 select username,account_status  from dba_users where username like 'APEX%';
 
 ALTER USER APEX_LISTENER  ACCOUNT UNLOCK identified by "Passw0rd!2";
