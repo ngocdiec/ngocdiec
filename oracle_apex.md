@@ -222,7 +222,7 @@ ALTER USER ORDSYS ACCOUNT UNLOCK identified by admin_123;
 ```
 
 
-# xxx
+# Mở kết nối
 11g
 ```SQL
 DECLARE
@@ -333,6 +333,27 @@ EXEC DBMS_XDB.sethttpport(0);
 
 ```
 
+
+# Unlock một số user cần thiết
+```SQL
+--Cần unlock một số user liên quan đến - APEX: APEX_PUBLIC_USER, APEX_LISTENER, APEX_REST_PUBLIC_USER - ORDS: ORDS_PUBLIC_USER
+
+select username,account_status  from dba_users where username like 'APEX%';
+
+ALTER USER APEX_LISTENER  ACCOUNT UNLOCK identified by "Passw0rd!2";
+ALTER USER APEX_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
+ALTER USER APEX_REST_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
+--ALTER USER APEX_INSTANCE_ADMIN_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
+--ALTER USER APEX_200200 ACCOUNT UNLOCK identified by "Passw0rd!2";
+
+select username,account_status  from dba_users where username like 'ORDS%';
+
+--ALTER USER ORDS_METADATA ACCOUNT UNLOCK identified by "Passw0rd!2";
+ALTER USER ORDS_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
+--ALTER USER ORDSYS ACCOUNT UNLOCK identified by "Passw0rd!2";
+```
+
+
 cp -r apex/images/ ords/
 
 cd ords/
@@ -395,6 +416,35 @@ Completed installation for Oracle REST Data Services version 20.3.0.r3011819. El
 Enter 1 if you wish to start in standalone mode or 2 to exit [1]:1
 Enter the APEX static resources location:/u01/ords/images
 Enter 1 if using HTTP or 2 if using HTTPS [1]:1
+
+```
+
+# [Start and Stop ORDS](https://oracle-base.com/articles/misc/oracle-rest-data-services-ords-standalone-mode)
+
+```console
+[oracle@dbvnpay ~]$ pwd
+/home/oracle
+[oracle@dbvnpay ~]$ mkdir -p ~/scripts/logs
+[oracle@dbvnpay ~]$ 
+[oracle@dbvnpay ~]$ 
+[oracle@dbvnpay ~]$ vi start_ords.sh
+
+#!/bin/bash
+export PATH=/usr/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:$PATH
+export JAVA_HOME=/usr
+LOGFILE=/home/oracle/scripts/logs/ords-`date +"%Y""%m""%d"`.log
+cd /u01/ords
+export JAVA_OPTIONS="-Dorg.eclipse.jetty.server.Request.maxFormContentSize=3000000"
+nohup $JAVA_HOME/bin/java ${JAVA_OPTIONS} -jar ords.war standalone >> $LOGFILE 2>&1 &
+echo "View log file with : tail -f $LOGFILE"
+
+[oracle@dbvnpay ~]$ vi stop_ords.sh
+
+#!/bin/bash
+export PATH=/usr/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:$PATH
+kill `ps -ef | grep ords.war | awk '{print $2}'`
+
+[oracle@dbvnpay ~]$ chmod u+x ~/scripts/*.sh
 
 ```
 
