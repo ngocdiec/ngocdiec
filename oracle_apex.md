@@ -385,7 +385,7 @@ Enter 1 if using HTTP or 2 if using HTTPS [1]:1
 /home/oracle
 [oracle@dbvnpay ~]$ mkdir -p ~/scripts/logs
 [oracle@dbvnpay ~]$ 
-[oracle@dbvnpay ~]$ 
+[oracle@dbvnpay ~]$ cd scripts/
 [oracle@dbvnpay ~]$ vi start_ords.sh
 
 #!/bin/bash
