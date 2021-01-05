@@ -90,6 +90,22 @@ rpm -Uvh gcc-c++-4.8.5-44.0.3.el7.x86_64.rpm
 
 
 rpm -Uvh pdksh-5.2.14
+
+#####
+
+rpm -Uvh kernel-headers-3.10.0-1160.el7.x86_64.rpm
+rpm -Uvh glibc-headers-2.17-317.0.1.el7.x86_64.rpm
+rpm -Uvh glibc-devel-2.17-317.0.1.el7.x86_64.rpm
+rpm -Uvh cpp-4.8.5-44.0.3.el7.x86_64.rpm
+rpm -Uvh libaio-devel-0.3.109-13.el7.x86_64.rpm
+rpm -Uvh compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm
+rpm -Uvh zlib-devel-1.2.7-18.el7.x86_64.rpm
+rpm -Uvh elfutils-libelf-devel-0.176-5.el7.x86_64.rpm
+rpm -Uvh libstdc++-devel-4.8.5-44.0.3.el7.x86_64.rpm
+rpm -Uvh gcc-4.8.5-44.0.3.el7.x86_64.rpm
+rpm -Uvh gcc-c++-4.8.5-44.0.3.el7.x86_64.rpm
+
+
 ```
 
 Hosts File
