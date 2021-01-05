@@ -378,6 +378,11 @@ Enter 1 if using HTTP or 2 if using HTTPS [1]:1
 
 ```
 
+# Kiểm tra version của ORDS
+```SQL
+select ords.installed_version from dual;
+```
+
 # [Start and Stop ORDS](https://oracle-base.com/articles/misc/oracle-rest-data-services-ords-standalone-mode)
 
 ```console
