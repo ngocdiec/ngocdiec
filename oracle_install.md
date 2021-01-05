@@ -150,7 +150,19 @@ Set the password for the "oracle" user.
 ```console
 [root@svr01 ~]# passwd oracle
 ```
-
+Set secure Linux to permissive by editing the "/etc/selinux/config" file, making sure the SELINUX flag is set as follows.
+```console
+SELINUX=permissive
+```
+Once the change is complete, restart the server or run the following command.
+```console
+# setenforce Permissive
+```
+If you have the Linux firewall enabled, you will need to disable or configure it, as shown here or here. To disable it, do the following.
+```console
+# systemctl stop firewalld
+# systemctl disable firewalld
+```
 Create the directories in which the Oracle software will be installed.
 ```console
 mkdir -p /u01/app/oracle/product/11.2.0.4/db_1
