@@ -54,7 +54,6 @@ package libstdc++-devel is not installed
 #make-3.82-24.el7(x86_64)
 #sysstat-10.1.5-19.el7(x86_64)
 
-
 yum install compat-libstdc++-33 \
 elfutils-libelf-devel \
 gcc \
@@ -69,30 +68,6 @@ libstdc++-devel
 
 ## 11g tren OL7U9
 ```console
-rpm -Uvh gcc-3.4.6 (x86_64)
-gcc-4.8.5-44.0.3.el7.x86_64.rpm
-	cpp-4.8.5-44.0.3.el7.x86_64.rpm
-		glibc-devel-2.17-317.0.1.el7.x86_64.rpm
-			glibc-headers-2.17-317.0.1.el7.x86_64.rpm
-				kernel-headers-3.10.0-1160.el7.x86_64.rpm
-
-
-
-rpm -Uvh libaio-devel-0.3.109-13.el7.x86_64.rpm
-
-rpm -Uvh compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm
-
-rpm -Uvh elfutils-libelf-devel-0.176-5.el7.x86_64.rpm
-	rpm -Uvh zlib-devel-1.2.7-18.el7.x86_64.rpm
-
-rpm -Uvh gcc-c++-4.8.5-44.0.3.el7.x86_64.rpm
-	rpm -Uvh libstdc++-devel-4.8.5-44.0.3.el7.x86_64.rpm
-
-
-rpm -Uvh pdksh-5.2.14
-
-#####
-
 rpm -Uvh kernel-headers-3.10.0-1160.el7.x86_64.rpm
 rpm -Uvh glibc-headers-2.17-317.0.1.el7.x86_64.rpm
 rpm -Uvh glibc-devel-2.17-317.0.1.el7.x86_64.rpm
@@ -104,7 +79,6 @@ rpm -Uvh elfutils-libelf-devel-0.176-5.el7.x86_64.rpm
 rpm -Uvh libstdc++-devel-4.8.5-44.0.3.el7.x86_64.rpm
 rpm -Uvh gcc-4.8.5-44.0.3.el7.x86_64.rpm
 rpm -Uvh gcc-c++-4.8.5-44.0.3.el7.x86_64.rpm
-
 
 ```
 
