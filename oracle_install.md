@@ -81,6 +81,10 @@ rpm -Uvh gcc-4.8.5-44.0.3.el7.x86_64.rpm
 rpm -Uvh gcc-c++-4.8.5-44.0.3.el7.x86_64.rpm
 
 ```
+Set the system host name
+```console
+sudo hostnamectl set-hostname myhost.mydomain
+```
 
 Hosts File
 ```console
