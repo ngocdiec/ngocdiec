@@ -1,3 +1,6 @@
+# apxdevrm_con.sql
+APEX will be "Runtime Only" - no Application Builder access.
+
 
 # Installation
 
