@@ -415,3 +415,14 @@ kill `ps -ef | grep ords.war | awk '{print $2}'`
 [oracle@dbvnpay ~]$ chmod u+x ~/scripts/*.sh
 
 ```
+
+check ORDS verification
+```console
+java -jar ords.war validate
+```
+
+ORDS Uninstall
+```console
+java -jar ords.war uninstall
+```
+
