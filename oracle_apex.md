@@ -149,10 +149,14 @@ READ WRITE
 
 # Cài đặt APEX
 
+## Tạo Tablespace để quản lý APEX
+CREATE TABLESPACE APEX DATAFILE '/data/DB11G/TS_APEX.dbf' SIZE 100M AUTOEXTEND ON NEXT 1M;
+
+
 ```console
 [oracle@dbvnpay ~]$ cd /u01/apex/
 [oracle@dbvnpay ~]$ sqlplus / as sysdba
-SQL> @apexins.sql sysaux sysaux temp /i/
+SQL> @apexins.sql APEX APEX TEMP /i/
 ```
 @apexins.sql
 Cài đặt APEX
@@ -175,7 +179,7 @@ User "ADMIN" exists.
 Enter ADMIN's email [ADMIN] ngoctv@vnpay.vn
 Enter ADMIN's password [] 
 Changed password of instance administrator ADMIN.
-
+# Vnpay!1234
 ```
 
 
@@ -187,7 +191,7 @@ Enter a password for the APEX_REST_PUBLIC_USER user              []
 ...set_appun.sql
 ...setting session environment
 ...create APEX_LISTENER and APEX_REST_PUBLIC_USER users
-
+# Vnpay!1234
 ```
 
 # Unlock một số user cần thiết
@@ -198,11 +202,11 @@ Enter a password for the APEX_REST_PUBLIC_USER user              []
 */
 SELECT USERNAME,ACCOUNT_STATUS  FROM DBA_USERS WHERE USERNAME LIKE 'APEX%';
 
-ALTER USER APEX_LISTENER  ACCOUNT UNLOCK identified by "Passw0rd!2";
-ALTER USER APEX_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
-ALTER USER APEX_REST_PUBLIC_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
---ALTER USER APEX_INSTANCE_ADMIN_USER ACCOUNT UNLOCK identified by "Passw0rd!2";
---ALTER USER APEX_200200 ACCOUNT UNLOCK identified by "Passw0rd!2";
+ALTER USER APEX_LISTENER  ACCOUNT UNLOCK identified by "Vnpay!1234";
+ALTER USER APEX_PUBLIC_USER ACCOUNT UNLOCK identified by "Vnpay!1234";
+ALTER USER APEX_REST_PUBLIC_USER ACCOUNT UNLOCK identified by "Vnpay!1234";
+--ALTER USER APEX_INSTANCE_ADMIN_USER ACCOUNT UNLOCK identified by "Vnpay!1234";
+--ALTER USER APEX_200200 ACCOUNT UNLOCK identified by "Vnpay!1234";
 
 SELECT USERNAME,ACCOUNT_STATUS  FROM DBA_USERS WHERE USERNAME LIKE 'ORDS%';
 
