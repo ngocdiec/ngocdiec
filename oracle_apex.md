@@ -328,6 +328,8 @@ EXEC DBMS_XDB.sethttpport(0);
 
 ```
 
+[Descriptions for Advanced Installation Prompts](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.2/aelig/installing-REST-data-services.html#GUID-2C42D982-BF08-48E3-A4C6-3FE1A78287E3)
+
 # [Cài đặt ORDS](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.3/aelig/installing-REST-data-services.html#GUID-137F70FC-A46F-4772-9EB2-47A5895F8CEC)
 
 ```console
