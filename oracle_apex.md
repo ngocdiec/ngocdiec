@@ -444,3 +444,10 @@ java -jar ords.war uninstall
 
 [About the Oracle REST Data Services Configuration Files](https://docs.oracle.com/cd/E56351_01/doc.30/e87809/about-REST-configuration-files.htm#AELIG7202)
 Mô tả cấu trúc và cấu hình ORDS
+
+Sửa cảnh báo WARNING     *** jdbc.MaxLimit in configuration
+Sửa file /path_to_ords/config/ords/defaults.xml
+thêm/chỉnh lại key jdbc.MaxLimit 
+```xml
+<entry key="jdbc.MaxLimit">20</entry>
+```
