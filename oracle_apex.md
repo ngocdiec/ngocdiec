@@ -429,3 +429,9 @@ ORDS Uninstall
 java -jar ords.war uninstall
 ```
 
+# [Converting Between Runtime and Full Development Environments](https://docs.oracle.com/en/database/oracle/application-express/20.2/htmig/converting-between-runtime-and-full-development-environments.html#GUID-BA4FEB10-AF06-4F4C-B841-649F8F3B616C)
+- An Oracle Application Express runtime environment enables users to run a production application without supporting the ability to change or edit the application.
+- Converting a Runtime Environment to a Full Development Environment: Start SQLPlus and connect to the database where Oracle Application Express is installed as SYS specifying the SYSDBA role and run the apxdvins.sql.
+- Converting a Full Development Environment to a Runtime Environment: Start SQLPlus and connect to the database where Oracle Application Express is installed as SYS specifying the SYSDBA role and run the apxdevrm.sql.
+
+
