@@ -435,3 +435,4 @@ java -jar ords.war uninstall
 - Converting a Full Development Environment to a Runtime Environment: Start SQLPlus and connect to the database where Oracle Application Express is installed as SYS specifying the SYSDBA role and run the apxdevrm.sql.
 
 
+# [Understanding Configurable Parameters](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.2/aelig/about-REST-configuration-files.html#GUID-D7B20781-9437-4C50-93D6-48477482001A)
