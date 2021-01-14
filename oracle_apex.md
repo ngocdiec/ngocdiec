@@ -438,3 +438,9 @@ java -jar ords.war uninstall
 
 
 # [Understanding Configurable Parameters](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.2/aelig/about-REST-configuration-files.html#GUID-D7B20781-9437-4C50-93D6-48477482001A)
+
+
+# Cấu hình ORDS
+
+[About the Oracle REST Data Services Configuration Files](https://docs.oracle.com/cd/E56351_01/doc.30/e87809/about-REST-configuration-files.htm#AELIG7202)
+Mô tả cấu trúc và cấu hình ORDS
