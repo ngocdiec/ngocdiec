@@ -449,5 +449,6 @@ Sửa cảnh báo WARNING     *** jdbc.MaxLimit in configuration
 Sửa file /path_to_ords/config/ords/defaults.xml
 thêm/chỉnh lại key jdbc.MaxLimit 
 ```xml
+<entry key="jdbc.InitialLimit">5</entry>
 <entry key="jdbc.MaxLimit">20</entry>
 ```
