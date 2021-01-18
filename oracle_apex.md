@@ -328,7 +328,33 @@ EXEC DBMS_XDB.sethttpport(0);
 
 ```
 
+# Verify network ACL settings in Oracle
+```SQL
+-- check/verify network ACL settings 
+select host, lower_port, upper_port, acl
+from dba_network_acls;
+ 
+select *
+from dba_network_acl_privileges;
+```
+
+# Verify Apex workspaces
+```SQL
+-- check setup of Apex workspaces
+select *
+from apex_workspaces;
+ 
+select *
+from apex_workspace_schemas;
+```
+
 [Descriptions for Advanced Installation Prompts](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.2/aelig/installing-REST-data-services.html#GUID-2C42D982-BF08-48E3-A4C6-3FE1A78287E3)
+
+# Giải thích ý nghĩa các script của APEX]
+|Script|Description|
+|-|-|
+|@apexins.sql|full installation (including the Application Builder)|
+|@apxrtins.sql|runtime-only installation (for production environments)|
 
 # [Cài đặt ORDS](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.3/aelig/installing-REST-data-services.html#GUID-137F70FC-A46F-4772-9EB2-47A5895F8CEC)
 
@@ -386,6 +412,12 @@ Enter the APEX static resources location:/u01/ords/images
 Enter 1 if using HTTP or 2 if using HTTPS [1]:1
 
 ```
+
+# [Descriptions for Advanced Installation Prompts](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.2/aelig/installing-REST-data-services.html#GUID-2C42D982-BF08-48E3-A4C6-3FE1A78287E3)
+
+# [ORDS Parameter File](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.2/aelig/installing-REST-data-services.html#GUID-EB2BD2FA-48C2-4786-BDA3-C35A20555F40)
+
+
 
 # Kiểm tra version của ORDS
 ```SQL
@@ -452,3 +484,11 @@ thêm/chỉnh lại key jdbc.MaxLimit
 <entry key="jdbc.InitialLimit">5</entry>
 <entry key="jdbc.MaxLimit">20</entry>
 ```
+
+
+
+# Ref
+http://krisrice.io/archive/
+
+[ORDS Understanding the Configuration Folder Structure](https://docs.oracle.com/cd/E56351_01/doc.30/e87809/about-REST-configuration-files.htm#AELIG7201)
+[ORDS Configuring Multiple Databases](https://docs.oracle.com/cd/E56351_01/doc.30/e87809/configuring-REST-data-services.htm#AELIG7188)
