@@ -355,6 +355,7 @@ from apex_workspace_schemas;
 |-|-|
 |@apexins.sql|full installation (including the Application Builder)|
 |@apxrtins.sql|runtime-only installation (for production environments)|
+|@apxdvins.sql|development enviroment|
 
 # [Cài đặt ORDS](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.3/aelig/installing-REST-data-services.html#GUID-137F70FC-A46F-4772-9EB2-47A5895F8CEC)
 
