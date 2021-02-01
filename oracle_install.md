@@ -212,3 +212,10 @@ Boot
 Swap 
 /u01
 /root
+
+
+
+# 19c
+
+Post Install
+- Kiểm tra và tắt process SYS_AUTO_STS_MODULE (tự động phân tích và tạo index -> gây tải cao cho hệ thống)
