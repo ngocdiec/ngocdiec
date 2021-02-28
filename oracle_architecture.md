@@ -1,7 +1,6 @@
 Các loại file trong Oracle:
 1. PFILEs/SPFILEs: Khi một Oracle Instance được khởi tạo, các đặc tính của nó cũng được thiết lập bởi các tham số cấu hình được lưu trữ trong PFILEs/SPFILEs (SPFILEs (Server Parameter File) chỉ có từ phiên bản 9 trở lên, còn các phiên bản trước đó sử dụng PFILEs)
-2. [CONTROLFILE](https://docs.oracle.com/en/database/oracle/oracle-database/19/admin/managing-control-files.html#GUID-98A05D29-DD80-4D87-9615-76CBCF8FE694): Every Oracle Database has a control file, which is a small binary file that records the physical structure of the database.
-The control file includes:
+2. [CONTROLFILE](https://docs.oracle.com/en/database/oracle/oracle-database/19/admin/managing-control-files.html#GUID-98A05D29-DD80-4D87-9615-76CBCF8FE694): Every Oracle Database has a control file, which is a small binary file that records the physical structure of the database. The control file includes:
    - The database name
    - Name and locations of associated files and redo log file
    - The timestamp of the database creation
