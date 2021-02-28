@@ -24,3 +24,36 @@ pwfile
 - We can perform recovery
 - We can enable ALM (Archive log mode)
 - We can enable FDBD (Flashback database)
+
+### OPEN
+- Databse completely open, where end users connect and perform all transactions
+- While moving from mount to open state Oracler perform "Sanity checking"
+- According to the controlfile infomation, Oracle check for physical existence of files and chck th synchronization SCN#, which is know as "Sanity checking"
+
+## Shutdown modes
+### SHUTDOWN NORMAL
+- New connection are not allowed
+- Connected user can perform ongoing transaction
+- Idle sesstion will not disconected
+- When connected user's logout manual then the database gets shutdown
+- It is also graceful shutdown. So it doesn't require ICR in next startup
+- A common SCN number will be updated to controlfiles and datafile before the database shutdown 
+### SHUTDOWN TRANSACTION
+- New connection are not allowed
+- Connected user can perform ongoing transaction
+- *Idle session will be disconected*
+- *The database gets shutdown once ongoing transactions gets completed (COMMIT/ROLLBACK)*
+- Hence, it is also graceful shutdown. So it doesn't require ICR in next startup
+### SHUTDOWN IMMEDIATE
+- New connection are not allowed
+- *Connected user can't perform ongoing transaction*
+- Idle session will be disconected
+- *Oracle perform ROLLBACKs the ongoing transaction (uncommited) and database gets shutdown*
+- A common SCN number will be updated to controlfiles and datafiles before the database shutdown
+- Hence, it is also graceful shutdown. So it doesn't require ICR in next startup
+### SHUTDOWN ABORT
+- New connections are not allowed
+- Connected user can't perform ongoing transaction
+- Idle session will be disconnected
+- *Database gets shutdown abruptly (No COMMIT/ No ROLLBACK)*
+- *Hence. it is abruptly shutdown. So its require ICR in next startup*
