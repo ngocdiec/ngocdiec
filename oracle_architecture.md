@@ -10,6 +10,7 @@ Các loại file trong Oracle:
 pwfile
 
 # Startup and Shutdown modes in Oracle
+![Startup and Shutdown modes in Oracle](https://www.ktexperts.com/wp-content/uploads/2019/01/1-2.png)
 ## Startup modes:
 ### STARTUP NOMOUNT
 - Oracle open and read spfile/pfile
