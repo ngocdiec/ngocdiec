@@ -213,9 +213,12 @@ Swap
 /u01
 /root
 
+# Post Install
+**Kiểm tra Database log mode**
+```SQL
+SQL> ARCHIVE LOG LIST;
+```
+Nếu là ARCHIVELOG Mode thì có thể hot backup (backup trong khi database đang hoạt động), ngược lại thì phải cold backup
 
-
-# 19c
-
-Post Install
+**19c**
 - Kiểm tra và tắt process SYS_AUTO_STS_MODULE (tự động phân tích và tạo index -> gây tải cao cho hệ thống)
