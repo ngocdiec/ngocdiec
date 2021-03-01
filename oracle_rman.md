@@ -83,5 +83,26 @@ To make a consistent database backup:
    RMAN> ALTER DATABASE OPEN;
    ```
 
+### Making Incremental Backups
+
+```console
+run{
+  crosscheck archivelog all;
+  crosscheck backup;
+  #
+  delete expired backup;
+  #
+  backup incremental level 0 database format '/backup/rman/data/%T_data_%U';
+  # Backup Archived Logs
+  backup archivelog all format '/backup/rman/data/%T_arc_%U' delete input;
+  # Control file backup
+  backup current controlfile format '/backup/rman/data/%T_ctl_%U';
+  # Spfile backup
+  backup spfile format '/backup/rman/data/%T_spfile_%U';
+  crosscheck backup;
+  #
+  delete obsolete;
+}
+```console
 
 
