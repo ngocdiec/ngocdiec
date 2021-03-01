@@ -42,9 +42,11 @@ SQL> ARCHIVE LOG LIST;
 ```
 ### In ARCHIVELOG Mode
 Nếu database đang chạy ở `ARCHIVELOG` mode, thì ta có thể backup database khi nó đang được `OPEN` (hot backup). Yêu cầu cần có ARCHIVELOG (redo log files) để có thể recover.
+
 To back up the database and archived redo logs while the database is open:
 1. Start RMAN and connect to a target database.
 2. Run the `BACKUP DATABASE` command.
+
    For example, enter the following command at the RMAN prompt to back up the database and all archived redo log files to the default backup device:
    ```console
    RMAN> BACKUP DATABASE PLUS ARCHIVELOG;
