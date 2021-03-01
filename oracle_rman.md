@@ -53,3 +53,35 @@ To back up the database and archived redo logs while the database is open:
    ```
 
 ### In NOARCHIVELOG Mode
+Nếu database đang chạy ở `NOARCHIVELOG ` mode, thì ta chỉ có thể backup được khi database chưa được `OPEN`, tức là ở `STARTUP MOUNT` state
+
+To make a consistent database backup:
+1. Start RMAN and connect to a target database.
+2. Shut down the database consistently and then mount it.
+
+   For example, enter the following commands to guarantee that the database is in a consistent state for a backup:
+   ```console
+   RMAN> SHUTDOWN IMMEDIATE;
+   RMAN> STARTUP FORCE DBA;
+   RMAN> SHUTDOWN IMMEDIATE;
+   RMAN> STARTUP MOUNT;
+   ```
+3. Run the BACKUP DATABASE command.
+
+   For example, enter the following command at the RMAN prompt to back up the database to the default backup device:
+   ```console
+   RMAN> BACKUP DATABASE;
+   ```
+   The following variation of the command creates image copy backups of all data files in the database:
+   ```console
+   RMAN> BACKUP AS COPY DATABASE;
+   ```
+4. Open the database and resume normal operations.
+
+   The following command opens the database:
+   ```console
+   RMAN> ALTER DATABASE OPEN;
+   ```
+
+
+
