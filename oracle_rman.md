@@ -104,8 +104,7 @@ run{
   #
   delete obsolete;
 }
-```console
-
+```
 crosscheck: sẽ kiểm tra RMAN repository với các file trên ổ đĩa để xác định expired và obsolete
 
 
