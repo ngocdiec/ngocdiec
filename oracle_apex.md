@@ -492,6 +492,11 @@ thêm/chỉnh lại key jdbc.MaxLimit
 ví dụ: http://10.22.11.24:8080/ords
 Manage Users and Groups -> User cần lock/unlock -> Account Availability (Chọn unlock/lock)
 
+hoặc thực thi bằng
+BEGIN
+    APEX_UTIL.UNLOCK_ACCOUNT (p_user_name IN VARCHAR2);
+END;
+
 
 # Ref
 http://krisrice.io/archive/
