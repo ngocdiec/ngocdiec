@@ -487,6 +487,11 @@ thêm/chỉnh lại key jdbc.MaxLimit
 ```
 
 
+# Lock/Unlock account
+Đăng nhập vào màn hình quản trị worksapce
+ví dụ: http://10.22.11.24:8080/ords
+Manage Users and Groups -> User cần unlock -> Account Availability (Chọn unlock/lock)
+
 
 # Ref
 http://krisrice.io/archive/
